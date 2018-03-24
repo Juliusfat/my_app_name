@@ -12,6 +12,7 @@
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App\Controller;
 
 use Cake\Controller\Controller;
@@ -37,12 +38,37 @@ class AppController extends Controller
      *
      * @return void
      */
+
     public function initialize()
     {
         parent::initialize();
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
+
+        $this->loadComponent('Auth', [
+            'authenticate' => [
+                'Form' => [
+                    'fields' => [
+                        'username' => 'email',
+                        'password' => 'password'
+                    ]
+                ]
+            ],
+            'authError' => 'Il faut être connecté pour utiliser cette fonction!',
+            'logoutRedirect' => [
+                'controller' => 'Data',
+                'action' => 'index'
+            ],
+            // Si pas autorisé, on renvoit sur la page login
+            'unauthorizedRedirect' => [
+                'controller' => 'Data',
+                'action' => 'login']
+        ]);
+
+        // Permet à l'action "display" de notre PagesController de continuer
+        // à fonctionner. Autorise également les actions "read-only".
+        $this->Auth->allow(['index', 'view', 'login']);
 
         /*
          * Enable the following components for recommended CakePHP security settings.

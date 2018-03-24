@@ -82,6 +82,26 @@ class DataController extends AppController
         $this->set('data', $data);
     }
 
+    public function login() {
+
+        if ($this->request->is('post')) {
+            $user = $this->Auth->identify();
+            if ($user) {
+                $this->Auth->setUser($user);
+                $this->Flash->success('Vous êtes connécté',
+                    ['key' => 'message']);
+                return $this->redirect(['action' => 'index']);
+
+            }
+            $this->Flash->error('Votre identifiant ou votre mot de passe est incorrect.');
+        }
+    }
+
+    public function logout() {
+        $this->Flash->success('Vous êtes déconnécté',
+            ['key' => 'message']);
+        $this->redirect($this->Auth->logout());
+    }
 
 }
 
