@@ -103,6 +103,21 @@ class DataController extends AppController
         $this->redirect($this->Auth->logout());
     }
 
+    public function json($id = null)
+    {
+
+        $data = $this->Data->get($id);
+
+        // Récupère une liste des tags.
+        $elements= $this->Data->Dataelement->find('all',array(
+            'conditions' => array('Dataelement.data_id =' => $id),
+            'recursive' => 0
+        ));
+        $json = json_encode(compact('data','elements'),JSON_UNESCAPED_UNICODE);
+
+        $this->set('json',$json);
+
+    }
 }
 
 ?>

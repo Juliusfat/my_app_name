@@ -24,8 +24,9 @@
       <td>
         <?php echo $this->Html->link('Edit', ['action'=>'view', $data->id],['class'=>'btn btn-primary']);?>
         <?php echo $this->Html->link('Update', ['action'=>'edit', $data->id],['class'=>'btn btn-success']);?>
-        <?php echo $this->Html->link('Supp', ['action'=>'delete', $data->id],['class'=>'btn btn-danger'],
-        ['confirm' => 'Etes vous sure']);?>
+        <?php echo $this->Html->link('Supp', ['action'=>'delete', $data->id],['class'=>'btn btn-danger'],['confirm' => 'Etes vous sur?']);?>
+        <?php echo $this->Html->link('Json', ['action'=>'json', $data->id],['class'=>'btn btn-warning']);?>
+
       </td>
     </tr>
     <?php endforeach;?>

@@ -56,19 +56,24 @@ class AppController extends Controller
                 ]
             ],
             'authError' => 'Il faut être connecté pour utiliser cette fonction!',
+            'loginRedirect' => [
+                'controller' => 'Data',
+                'action' => 'index'
+            ],
             'logoutRedirect' => [
                 'controller' => 'Data',
                 'action' => 'index'
             ],
-            // Si pas autorisé, on renvoit sur la page login
             'unauthorizedRedirect' => [
                 'controller' => 'Data',
-                'action' => 'login']
+                'action' => 'login'
+
+            ]
         ]);
 
         // Permet à l'action "display" de notre PagesController de continuer
         // à fonctionner. Autorise également les actions "read-only".
-        $this->Auth->allow(['index', 'view', 'login']);
+        $this->Auth->allow(['index', 'view', 'login', 'json']);
 
         /*
          * Enable the following components for recommended CakePHP security settings.
