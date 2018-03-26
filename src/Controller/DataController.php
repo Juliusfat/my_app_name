@@ -38,13 +38,7 @@ class DataController extends AppController
     public function view($id = null)
     {
 
-        $data = $this->Data->get($id);
-        $this->set('data', $data);
-        // Récupère une liste des tags.
-        $elements= $this->Data->Dataelement->find('all',array(
-            'conditions' => array('Dataelement.data_id =' => $id),
-            'recursive' => 0
-        ));
+        $elements= $this->Data->get($id, ['contain'=>['Dataelement']]);
         $this->set('elements',$elements);
 
     }
@@ -105,15 +99,12 @@ class DataController extends AppController
 
     public function json($id = null)
     {
+        //récupération des data avec liaison avec les data éléments
+        $data = $this->Data->get($id, ['contain'=>['Dataelement']]);
 
-        $data = $this->Data->get($id);
+        $array = $data->toArray();
 
-        // Récupère une liste des tags.
-        $elements= $this->Data->Dataelement->find('all',array(
-            'conditions' => array('Dataelement.data_id =' => $id),
-            'recursive' => 0
-        ));
-        $json = json_encode(compact('data','elements'),JSON_UNESCAPED_UNICODE);
+        $json = json_encode($array,JSON_UNESCAPED_UNICODE);
 
         $this->set('json',$json);
 

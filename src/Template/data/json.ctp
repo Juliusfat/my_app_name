@@ -1,7 +1,7 @@
 <h1> Le détail de la data en json</h1>
 
-<span class="container-fixed">
+<textarea class="form-control rounded-0" rows="10">
 
-    <?php var_dump(json_decode($json));?>
+    <?php echo $json ;?>
 
-</span>
+</textarea>
