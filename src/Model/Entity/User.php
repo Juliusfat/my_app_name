@@ -40,7 +40,7 @@ class User extends Entity
     protected $_hidden = [
         'password'
     ];
-
+    // fonction setter permétant le hash du mot de passe
     protected function _setPassword($value)
     {
         if (strlen($value)) {

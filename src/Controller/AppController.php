@@ -46,6 +46,8 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
 
+        // Chargement et initialisation du composant Auth pour l'authentification
+        // définition des champs qui serviront lors de la connexion
         $this->loadComponent('Auth', [
             'authenticate' => [
                 'Form' => [
@@ -55,10 +57,13 @@ class AppController extends Controller
                     ]
                 ]
             ],
+            // message personnalisé lors d'une connexion à un module non authorisé
             'authError' => 'Il faut être connecté pour utiliser cette fonction!',
+            //redirection pour les pages de d'identification
             'loginRedirect' => [
                 'controller' => 'Data',
-                'action' => 'index'
+                'action' => 'index',
+                'base' => false
             ],
             'logoutRedirect' => [
                 'controller' => 'Data',
@@ -66,13 +71,12 @@ class AppController extends Controller
             ],
             'unauthorizedRedirect' => [
                 'controller' => 'Data',
-                'action' => 'login'
-
+                'action' => 'login',
+                'prefix' => false
             ]
         ]);
 
-        // Permet à l'action "display" de notre PagesController de continuer
-        // à fonctionner. Autorise également les actions "read-only".
+        // Autorise également les actions "read-only".
         $this->Auth->allow(['index', 'view', 'login', 'json']);
 
         /*
