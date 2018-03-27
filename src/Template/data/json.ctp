@@ -5,3 +5,9 @@
     <?php echo $json;?>
 
 </textarea>
+
+<div>
+
+ <?php echo $this->html ->link('Retour',['action'=>'index'],['class'=>'btn btn-primary']);?>
+
+ </div>
