@@ -90,8 +90,10 @@ class DataController extends AppController
 
     public function login()
     {
+
         //recupération de la requete de connexion
         if ($this->request->is(['patch', 'post', 'put'])) {
+
             //connecter un utilisateur en utilisant les clés fournies dans la requête
             $user = $this->Auth->identify();
             if ($user) {
@@ -103,6 +105,7 @@ class DataController extends AppController
 
             }
             $this->Flash->error('Votre identifiant ou votre mot de passe est incorrect.');
+
         }
     }
 

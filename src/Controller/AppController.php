@@ -73,7 +73,9 @@ class AppController extends Controller
                 'controller' => 'Data',
                 'action' => 'login',
                 'prefix' => false
+
             ]
+
         ]);
 
         // Autorise également les actions "read-only".

@@ -39,8 +39,10 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <a class="navbar-brand" href="#">Exercice Data </a>
-      <?php echo $this->html ->link('Login',['action'=>'login'],['class'=>'btn btn-success']);?>
-       <?php echo $this->html ->link('Logout',['action'=>'logout'],['class'=>'btn btn-warning']);?>
+      <?php if (is_null($this->request->session()->read('Auth.User.id'))){
+
+           echo $this->html ->link('Login',['action'=>'login'],['class'=>'btn btn-success']);}else{
+           echo $this->html ->link('Logout',['action'=>'logout'],['class'=>'btn btn-warning']);}?>
 
       <div class="collapse navbar-collapse" id="navbarColor01">
 
