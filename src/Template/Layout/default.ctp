@@ -42,7 +42,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
       <?php if (is_null($this->request->session()->read('Auth.User.id'))){
 
            echo $this->html ->link('Login',['action'=>'login'],['class'=>'btn btn-success']);}else{
-           echo $this->html ->link('Logout',['action'=>'logout'],['class'=>'btn btn-warning']);}?>
+           echo $this->html ->link('Logout',['action'=>'logout'],['class'=>'btn btn-warning']).$this->request->session()->read('Auth.User.email');}?>
 
       <div class="collapse navbar-collapse" id="navbarColor01">
 

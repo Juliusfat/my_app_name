@@ -69,12 +69,7 @@ class AppController extends Controller
                 'controller' => 'Data',
                 'action' => 'index'
             ],
-            'unauthorizedRedirect' => [
-                'controller' => 'Data',
-                'action' => 'login',
-                'prefix' => false
-
-            ]
+            'unauthorizedRedirect' => false
 
         ]);
 
